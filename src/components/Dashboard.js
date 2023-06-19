@@ -1,11 +1,29 @@
 import React, { useState } from 'react';
-import { Grid, Typography, TextField, Select, MenuItem, Button, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper } from '@mui/material';
+import {
+  Grid,
+  Typography,
+  TextField,
+  Select,
+  MenuItem,
+  Button,
+  Table,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+  AppBar,
+  Toolbar,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const RootContainer = styled('div')({
-  backgroundColor: '#eaf4f7',
-  padding: '16px',
-});
+    backgroundColor: '#eaf4f7',
+    padding: '16px',
+    paddingTop: '70px', // Added top padding to offset the app bar
+  });
+  
 
 const SearchSection = styled('div')({
   marginBottom: '16px',
@@ -66,23 +84,31 @@ const Dashboard = () => {
 
   return (
     <RootContainer>
-      <Grid container spacing={2} component={SearchSection}>
-      <Grid item xs={12} sm={4}>
-  <Grid container alignItems="center" spacing={1}>
-    <Grid item>
-      <Typography>Employee ID:</Typography>
-    </Grid>
-    <Grid item>
-      <TextField
-        value={searchCriteria.employeeId}
-        onChange={handleSearchCriteriaChange}
-        name="employeeId"
-        fullWidth
-      />
-    </Grid>
-  </Grid>
-</Grid>
+      <AppBar position="fixed" color="primary" sx={{ paddingLeft: 0, paddingRight: 0 }}>
+  <Toolbar>
+    <Typography variant="h6">Retention Request</Typography>
+    <Button variant="contained" color="secondary" style={{ marginLeft: 'auto' }}>
+      Raise Request
+    </Button>
+  </Toolbar>
+</AppBar>
 
+      <Grid container spacing={2} component={SearchSection}>
+        <Grid item xs={12} sm={4}>
+          <Grid container alignItems="center" spacing={1}>
+            <Grid item>
+              <Typography>Employee ID:</Typography>
+            </Grid>
+            <Grid item>
+              <TextField
+                value={searchCriteria.employeeId}
+                onChange={handleSearchCriteriaChange}
+                name="employeeId"
+                fullWidth
+              />
+            </Grid>
+          </Grid>
+        </Grid>
         <Grid item xs={12} sm={4}>
           <Grid container alignItems="center" spacing={1}>
             <Grid item>
