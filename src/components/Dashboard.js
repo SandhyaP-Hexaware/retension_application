@@ -17,6 +17,8 @@ import {
   Toolbar,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import {data} from '../data';
+
 
 const RootContainer = styled('div')({
     backgroundColor: '#eaf4f7',
@@ -49,26 +51,7 @@ const Dashboard = () => {
     });
   };
 
-  // Dummy data
-  const data = [
-    {
-      employeeId: '1234',
-      tsr: 'TSR1',
-      billingType: 'Type1',
-      raisedBy: 'John Doe',
-      raisedById: '456',
-      status: 'Open',
-    },
-    {
-      employeeId: '5678',
-      tsr: 'TSR2',
-      billingType: 'Type2',
-      raisedBy: 'Jane Smith',
-      raisedById: '789',
-      status: 'Awaiting Approval',
-    },
-    // Add more dummy data here
-  ];
+  
 
   const filterData = (item) => {
     const { employeeId, billingType, status } = searchCriteria;
