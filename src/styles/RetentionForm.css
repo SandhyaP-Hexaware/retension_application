@@ -1,0 +1,27 @@
+.App {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .row {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .column {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .scrollable {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+  
