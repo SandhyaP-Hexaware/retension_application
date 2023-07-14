@@ -67,14 +67,7 @@ const Dashboard = () => {
 
   return (
     <RootContainer>
-      <AppBar position="fixed" color="primary" sx={{ paddingLeft: 0, paddingRight: 0 }}>
-  <Toolbar>
-    <Typography variant="h6">Retention Request</Typography>
-    <Button variant="contained" color="secondary" style={{ marginLeft: 'auto' }}>
-      Raise Request
-    </Button>
-  </Toolbar>
-</AppBar>
+      
 
       <Grid container spacing={2} component={SearchSection}>
         <Grid item xs={12} sm={4}>

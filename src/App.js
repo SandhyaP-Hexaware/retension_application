@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link,Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard.js';
 import EmployeeDetails from './components/RetentionForm';
+import EmployeeDetailsScreen from './components/StatusScreen';
 import {
   Grid,
   Typography,
@@ -36,7 +37,7 @@ function App() {
     <Routes>
     <Route exact path="/" element={<Dashboard />} />
     <Route path="/RetentionForm" element={<EmployeeDetails />} />
-      
+    <Route path="/Status" element={<EmployeeDetailsScreen />} />
     </Routes>
       
       
