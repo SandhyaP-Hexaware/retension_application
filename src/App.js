@@ -27,7 +27,7 @@ function App() {
     <AppBar position="fixed" color="primary" sx={{ paddingLeft: 0, paddingRight: 0 }}>
   <Toolbar>
     <Typography variant="h6">Retention Request</Typography>
-    <Button variant="contained" color="secondary" style={{ marginLeft: 'auto' }}>
+    <Button variant="contained" style={{ marginLeft: 'auto', backgroundColor: '#eaf4f7', color: '#454545' }}>
       Raise Request
     </Button>
   </Toolbar>
