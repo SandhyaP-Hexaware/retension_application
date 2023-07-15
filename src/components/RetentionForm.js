@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles"
+import { useNavigate } from "react-router-dom";
 import { Grid, TextField, RadioGroup, FormControlLabel, Radio, Card, Button, Stepper, Step, StepLabel } from "@mui/material"
 import {data }from "../data";
 
@@ -88,9 +89,11 @@ const EmployeeDetails = () => {
   
     handleNext();
   };
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
     // Handle form submission logic here
+    navigate('/')
+
   }
   return (
     <ThemeProvider theme={theme}>
