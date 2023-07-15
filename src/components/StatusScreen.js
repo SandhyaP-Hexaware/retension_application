@@ -18,6 +18,7 @@ import { data, updateDataByEmployeeId } from "../data";
 import EmployeeDetails from "./RetentionForm";
 
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 const RootContainer = styled("div")({
@@ -61,6 +62,7 @@ const GreyText = styled(Typography)({
 });
 
 const EmployeeDetailsScreen = ({ dropdownValue }) => {
+  const navigate=useNavigate();
   const { employeeId } = useParams();
   const id = parseInt(employeeId);
   console.log(id);
@@ -213,6 +215,7 @@ const EmployeeDetailsScreen = ({ dropdownValue }) => {
     employeeDetails.VHUHVDHApprovedRetentionRequest = true;
     updateDataByEmployeeId(employeeDetails.employeeID, employeeDetails);
     console.log("update called");
+    navigate('/');
   };
 
   const handleChangehrbpcomments = (event) => {
@@ -246,6 +249,7 @@ const EmployeeDetailsScreen = ({ dropdownValue }) => {
       employeeDetails.HRBPsApprovedRetentionRequest = true;
     }
     updateDataByEmployeeId(employeeDetails.employeeID, employeeDetails);
+    navigate('/');
   };
 
   const handleChangehrgeocomments = (event) => {
@@ -279,6 +283,7 @@ const EmployeeDetailsScreen = ({ dropdownValue }) => {
       employeeDetails.HRGeoHeadsApprovedRetentionRequest = true;
     }
     updateDataByEmployeeId(employeeDetails.employeeID, employeeDetails);
+    navigate('/');
   };
 
   const handleChangeCpocomments = (event) => {
@@ -312,6 +317,7 @@ const EmployeeDetailsScreen = ({ dropdownValue }) => {
       employeeDetails.CpoApprovedRetentionRequest = true;
     }
     updateDataByEmployeeId(employeeDetails.employeeID, employeeDetails);
+    navigate('/');
   };
 
   return (

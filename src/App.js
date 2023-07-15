@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, NavLink, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom';
 import Dashboard from './components/Dashboard.js';
 import EmployeeDetails from './components/RetentionForm.js';
 import EmployeeDetailsScreen from './components/StatusScreen.js';
@@ -100,6 +100,7 @@ function App() {
           <Button
             className="transparent-button"
             style={{ marginLeft: '10px', backgroundColor: 'transparent', color: '#fff' }}
+            // onClick={() => navigate('/RetentionForm')}
           >
             Raise Request
           </Button>
