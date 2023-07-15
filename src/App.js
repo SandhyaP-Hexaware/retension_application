@@ -22,75 +22,71 @@ import {
   AppBar,
   Toolbar,
   Box,
-  IconButton,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { styled } from '@mui/material/styles';
+  IconButton
+} from "@mui/material"
+import MenuIcon from "@mui/icons-material/Menu"
+import { styled } from "@mui/material/styles"
 
-const SidePanel = styled('div')(({ theme }) => ({
-  width: '200px',
-  backgroundColor: '#fff',
-  color: '#888',
-  paddingTop: '70px',
-  display: 'none',
-  '@media (min-width: 600px)': {
-    display: 'block',
-  },
-}));
+const SidePanel = styled("div")(({ theme }) => ({
+  width: "200px",
+  backgroundColor: "#fff",
+  color: "#888",
+  paddingTop: "70px",
+  display: "none",
+  "@media (min-width: 600px)": {
+    display: "block"
+  }
+}))
 
-const SidePanelContent = styled('div')({
-  paddingTop: '20px', // Add space at the top
-});
+const SidePanelContent = styled("div")({
+  paddingTop: "60px" // Add space at the top
+})
 
 const SidePanelItem = styled(NavLink)(({ theme }) => ({
-  padding: '10px',
-  display: 'flex',
-  alignItems: 'center',
-  color: '#888',
-  textDecoration: 'none',
-  '&:hover': {
-    color: '#000',
+  padding: "10px",
+  display: "flex",
+  alignItems: "center",
+  color: "#888",
+  textDecoration: "none",
+  "&:hover": {
+    color: "#000"
   },
-  '&.active': {
-    color: '#000',
-    fontWeight: 'bold',
-  },
-}));
+  "&.active": {
+    color: "#000",
+    fontWeight: "bold"
+  }
+}))
 
-const SidePanelItemText = styled('span')({
-  marginRight: '10px',
-});
+const SidePanelItemText = styled("span")({
+  marginRight: "10px"
+})
 
 function App() {
-  const [isSidePanelOpen, setSidePanelOpen] = useState(false);
-  const [dropdownValue, setDropdownValue] = useState('ASDM');
+  const [isSidePanelOpen, setSidePanelOpen] = useState(false)
+  const [dropdownValue, setDropdownValue] = useState("ASDM")
+
+  // const navigate = useNavigate()
+
+  // const handleClick = () => {
+  //   navigate("/RetentionForm")
+  // }
   const toggleSidePanel = () => {
-    setSidePanelOpen(!isSidePanelOpen);
-  };
+    setSidePanelOpen(!isSidePanelOpen)
+  }
 
   const handleDropdownChange = (event) => {
-    setDropdownValue(event.target.value);
-  };
+    setDropdownValue(event.target.value)
+  }
 
   return (
     <Router>
-     <AppBar position="fixed" color="primary" sx={{ paddingLeft: 0, paddingRight: 0 }}>
+      <AppBar position="fixed" color="primary" sx={{ paddingLeft: 0, paddingRight: 0 }}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleSidePanel}
-            sx={{ mr: 2 }}
-          >
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleSidePanel} sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6">Retention Request</Typography>
-          <Select
-            value={dropdownValue}
-            onChange={handleDropdownChange}
-            sx={{ marginLeft: 'auto', color: '#fff' }}
-          >
+          <Select value={dropdownValue} onChange={handleDropdownChange} sx={{ marginLeft: "auto", color: "#fff" }}>
             <MenuItem value="ASDM">ASDM</MenuItem>
             <MenuItem value="VH/UH/VDH">VH/UH/VDH</MenuItem>
             <MenuItem value="HRBP">HRBP</MenuItem>
@@ -106,46 +102,29 @@ function App() {
           </Button>
         </Toolbar>
       </AppBar>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: "flex" }}>
         <Box
           component={SidePanel}
           sx={{
             flexShrink: 0,
             p: 2,
-            display: isSidePanelOpen ? 'block' : 'none',
-          }}
-        >
+            display: isSidePanelOpen ? "block" : "none"
+          }}>
           <SidePanelContent>
             <ul>
               <li>
-                <SidePanelItem
-                  exact
-                  to="/"
-                  style={{ textDecoration: 'none' }}
-                  activeClassName="active"
-                  onClick={() => setSidePanelOpen(false)}
-                >
+                <SidePanelItem exact to="/" style={{ textDecoration: "none" }} activeClassName="active" onClick={() => setSidePanelOpen(false)}>
                   <SidePanelItemText>Dashboard</SidePanelItemText>
                 </SidePanelItem>
               </li>
               <li>
-                <SidePanelItem
-                  to="/RetentionForm"
-                  style={{ textDecoration: 'none' }}
-                  activeClassName="active"
-                  onClick={() => setSidePanelOpen(false)}
-                >
-                  <SidePanelItemText>Approvals</SidePanelItemText>
+                <SidePanelItem to="/RetentionForm" style={{ textDecoration: "none" }} activeClassName="active" onClick={() => setSidePanelOpen(false)}>
+                  <SidePanelItemText>Retention Request</SidePanelItemText>
                 </SidePanelItem>
               </li>
               <li>
-                <SidePanelItem
-                  to="/Status"
-                  style={{ textDecoration: 'none' }}
-                  activeClassName="active"
-                  onClick={() => setSidePanelOpen(false)}
-                >
-                  <SidePanelItemText>Description</SidePanelItemText>
+                <SidePanelItem to="/Status" style={{ textDecoration: "none" }} activeClassName="active" onClick={() => setSidePanelOpen(false)}>
+                  <SidePanelItemText>Approval Status</SidePanelItemText>
                 </SidePanelItem>
               </li>
             </ul>
@@ -155,12 +134,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/RetentionForm" element={<EmployeeDetails />} />
-            <Route path="/Status/:employeeId" element={<EmployeeDetailsScreen dropdownValue={dropdownValue}/>} />
+            <Route path="/Status/:employeeId" element={<EmployeeDetailsScreen dropdownValue={dropdownValue} />} />
           </Routes>
         </Box>
       </Box>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
