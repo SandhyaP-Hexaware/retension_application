@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Grid,
   Typography,
@@ -13,36 +13,92 @@ import {
   TableCell,
   TableBody,
   Paper,
-  AppBar,
-  Toolbar,
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
-import {data} from '../data';
+  Avatar,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { data } from "../data";
+import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
 
-
-const RootContainer = styled('div')({
-    backgroundColor: '#eaf4f7',
-    padding: '16px',
-    paddingTop: '70px', // Added top padding to offset the app bar
-  });
-  
-
-const SearchSection = styled('div')({
-  marginBottom: '16px',
+const RootContainer = styled("div")({
+  backgroundColor: "#eaf4f7",
+  minHeight: "100vh",
+  padding: "16px",
+  paddingTop: "70px",
 });
 
-const GridContainer = styled('div')({
-  backgroundColor: '#fff',
-  padding: '16px',
-  borderRadius: '8px',
+const SearchSection = styled("div")({
+  marginBottom: "16px",
+});
+
+const GridContainer = styled("div")({
+  backgroundColor: "#fff",
+  padding: "16px",
+  borderRadius: "8px",
+});
+
+const TableContainerStyled = styled(TableContainer)({
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+});
+
+const TableStyled = styled(Table)({
+  borderRadius: "8px",
+});
+
+const TableHeadCellStyled = styled(TableCell)(({ theme }) => ({
+  fontWeight: "bold",
+  color: "black",
+}));
+
+const ViewButtonStyled = styled(Button)({
+  backgroundColor: "#2196f3",
+  color: "#fff",
+  "&:hover": {
+    backgroundColor: "#1976d2",
+  },
+});
+
+const SearchContainer = styled(Grid)({
+  borderRadius: "8px",
+  backgroundColor: "#fff",
+  padding: "4px",
+  display: "flex",
+  alignItems: "center",
+});
+
+const SearchInput = styled(TextField)({
+  marginLeft: "8px",
+  flex: 1,
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "none",
+    },
+  },
+});
+
+const TableRowStyled = styled(TableRow)({
+  "& > *": {
+    borderBottom: "none",
+  },
+});
+
+const AvatarCell = styled(TableCell)({
+  display: "flex",
+  alignItems: "center",
+});
+
+const AvatarStyled = styled(Avatar)({
+  marginRight: "8px",
 });
 
 const Dashboard = () => {
   const [searchCriteria, setSearchCriteria] = useState({
-    employeeId: '',
-    billingType: '',
-    status: '',
+    employeeId: "",
+    billingType: "",
+    status: "",
   });
+
+  const navigate = useNavigate();
 
   const handleSearchCriteriaChange = (event) => {
     setSearchCriteria({
@@ -50,8 +106,6 @@ const Dashboard = () => {
       [event.target.name]: event.target.value,
     });
   };
-
-  
 
   const filterData = (item) => {
     const { employeeId, billingType, status } = searchCriteria;
@@ -65,100 +119,66 @@ const Dashboard = () => {
 
   const filteredData = data.filter(filterData);
 
+  const handleViewRequest = (employeeId) => {
+    navigate(`/Status/${employeeId}`);
+  };
+
   return (
     <RootContainer>
-      
-
       <Grid container spacing={2} component={SearchSection}>
         <Grid item xs={12} sm={4}>
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-              <Typography>Employee ID:</Typography>
-            </Grid>
-            <Grid item>
-              <TextField
-                value={searchCriteria.employeeId}
-                onChange={handleSearchCriteriaChange}
-                name="employeeId"
-                fullWidth
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-              <Typography>Billing Type:</Typography>
-            </Grid>
-            <Grid item>
-              <Select
-                value={searchCriteria.billingType || ''}
-                onChange={handleSearchCriteriaChange}
-                name="billingType"
-                fullWidth
-              >
-                <MenuItem value="">All</MenuItem>
-                <MenuItem value="Type1">Type1</MenuItem>
-                <MenuItem value="Type2">Type2</MenuItem>
-                {/* Add more options if needed */}
-              </Select>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-              <Typography>Status:</Typography>
-            </Grid>
-            <Grid item>
-              <Select
-                value={searchCriteria.status || ''}
-                onChange={handleSearchCriteriaChange}
-                name="status"
-                fullWidth
-              >
-                <MenuItem value="">All</MenuItem>
-                <MenuItem value="Open">Open</MenuItem>
-                <MenuItem value="Awaiting Approval">Awaiting Approval</MenuItem>
-                <MenuItem value="Approved">Approved</MenuItem>
-                {/* Add more options if needed */}
-              </Select>
-            </Grid>
-          </Grid>
+          <SearchContainer>
+            <SearchIcon />
+            <SearchInput
+              value={searchCriteria.employeeId}
+              onChange={handleSearchCriteriaChange}
+              name="employeeId"
+              fullWidth
+              variant="outlined"
+              placeholder="Search by Employee ID"
+              size="small"
+            />
+          </SearchContainer>
         </Grid>
       </Grid>
-      <GridContainer>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Employee ID</TableCell>
-                <TableCell>TSR</TableCell>
-                <TableCell>Billing Type</TableCell>
-                <TableCell>Raised By</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>View Request</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredData.map((item) => (
-                <TableRow key={item.employeeId}>
-                  <TableCell>{item.employeeId}</TableCell>
-                  <TableCell>{item.tsr}</TableCell>
-                  <TableCell>{item.billingType}</TableCell>
-                  <TableCell>{item.raisedBy} ({item.raisedById})</TableCell>
-                  <TableCell>{item.status}</TableCell>
-                  <TableCell>
-                    <Button variant="contained" color="primary">
-                      View
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </GridContainer>
+      <TableContainerStyled component={Paper}>
+        <TableStyled>
+          <TableHead>
+            <TableRow>
+              <TableHeadCellStyled>Employee</TableHeadCellStyled>
+              <TableHeadCellStyled>TSR</TableHeadCellStyled>
+              <TableHeadCellStyled>Billing Type</TableHeadCellStyled>
+              <TableHeadCellStyled>Status</TableHeadCellStyled>
+              <TableHeadCellStyled>View Request</TableHeadCellStyled>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredData.map((item) => (
+              <TableRowStyled key={item.employeeId}>
+                <AvatarCell>
+                  <AvatarStyled alt={item.empName} src={item.avatarUrl} />
+                  <div>
+                    <Typography variant="subtitle2" style={{ marginBottom: "4px" , fontWeight: "bold"}}>
+                      {item.empName}
+                    </Typography>
+                    <Typography variant="body2" style={{ marginTop: "4px" }}>
+                      Emp Id: {item.employeeId}
+                    </Typography>
+                  </div>
+                </AvatarCell>
+                <TableCell>{item.tsr}</TableCell>
+                <TableCell>{item.billingType}</TableCell>
+                <TableCell>{item.status}</TableCell>
+                <TableCell>
+                  <ViewButtonStyled variant="contained" onClick={() => handleViewRequest(item.employeeId)}>
+                    View
+                  </ViewButtonStyled>
+                </TableCell>
+              </TableRowStyled>
+            ))}
+          </TableBody>
+        </TableStyled>
+      </TableContainerStyled>
     </RootContainer>
   );
 };

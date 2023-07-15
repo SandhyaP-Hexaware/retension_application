@@ -58,3 +58,31 @@
   max-height: 400px;
   overflow-y: scroll;
 }
+
+
+.side-panel {
+  width: 200px;
+  background-color: #f0f0f0;
+}
+
+.side-panel ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-panel li {
+  padding: 10px;
+}
+
+.side-panel li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.transparent-button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+}
+
