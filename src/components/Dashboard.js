@@ -108,12 +108,12 @@ const Dashboard = () => {
   };
 
   const filterData = (item) => {
-    const { employeeId, billingType, status } = searchCriteria;
+    const { employeeId } = searchCriteria;
 
     return (
-      (!employeeId || item.employeeId.includes(employeeId)) &&
-      (!billingType || item.billingType === billingType) &&
-      (!status || item.status === status)
+      (!employeeId || item.employeeId.includes(employeeId)) 
+      // (!billingType || item.billingType === billingType) &&
+      // (!status || item.status === status)
     );
   };
 

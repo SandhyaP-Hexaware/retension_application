@@ -312,8 +312,9 @@ const EmployeeDetailsScreen = ({ dropdownValue }) => {
       setEmployeeDetails((prevDetails) => ({
         ...prevDetails,
         [employeeDetails.CpoApprovedRetentionRequest]: true,
+        [employeeDetails.status]: 'closed',
       }));
-
+      employeeDetails.status = "closed";
       employeeDetails.CpoApprovedRetentionRequest = true;
     }
     updateDataByEmployeeId(employeeDetails.employeeID, employeeDetails);
